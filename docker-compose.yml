@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backup:
+    build: .
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=mydb
+    depends_on:
+      - db 
+
+volumes:
+  postgres_data:
+    driver: local
