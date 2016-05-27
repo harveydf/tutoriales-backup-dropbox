@@ -7,8 +7,6 @@ services:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=mydb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
   backup:
     build: .
@@ -16,9 +14,5 @@ services:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=mydb
-    depends_on:
-      - db 
-
-volumes:
-  postgres_data:
-    driver: local
+      - POSTGRES_HOST=db
+      - DROPBOX_ACCESS_TOKEN=XJSmdEHZdVUAAAAAAAALck58f3FbTv3dl2nS61VnL0VGRJCPA24IPTLCfAevZs2H 

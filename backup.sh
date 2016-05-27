@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# Capturamos la fecha actual en formato yyy-mm-dd
+# Este comando hace que si hay un error el script
+# llame un exit con el nÃmero del error y no siga
+# ejecutando
+set -e
+
+# Capturamos la fecha actual en formato yyyy-mm-dd
 today=$(date +%Y-%m-%d)
 
 # Generamos el nombre que va a tener el archivo sql
@@ -11,7 +16,7 @@ filename="$POSTGRES_DB-$today.sql"
 
 # Generamos el dump de la base de datos y lo guardamos en un archivo
 # con el nombre que definimos antes
-pg_dump -h $POSTGRES_HOST -U $POSTGRES_USER --no-password $POSTGRES_DB > /tmp/$filename
+pg_dump -h $POSTGRES_HOST -U $POSTGRES_USER $POSTGRES_DB > /tmp/$filename
 
 # Para subir un archivo a dropbox basta con hacer un POST a la API url
 # con un access token

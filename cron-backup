@@ -1,0 +1,4 @@
+# La línea en blanco al final es requerido
+# para que sea un archivo cron válido
+0 0 * * * root ./backup.sh >> /var/log/cron.log 2>&1
+
